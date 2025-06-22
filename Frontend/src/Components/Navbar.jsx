@@ -6,46 +6,57 @@ import { useNavigate } from "react-router";
 
 const NavBar = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
-    const [isLogged, setLogged] = useState(false);
     const [userProfile, setUserProfile] = useState(null);
+    const { SignUpWithGoogle, currentUser, LogOutUser } = useFirebase();
+    const navigate = useNavigate();
 
     useEffect(() => {
         const token = Cookies.get("AccessToken");
         const profileData = Cookies.get("UserProfile");
 
-        if (token && profileData) {
-            setLogged(true);
+        if (token && profileData && currentUser) {
             setUserProfile(JSON.parse(profileData));
         } else {
-            setLogged(false);
             setUserProfile(null);
         }
-    }, []);
+    }, [currentUser]);
 
-    const handleLogout = () => {
-        Cookies.remove("AccessToken");
-        Cookies.remove("UserProfile");
-        setLogged(false);
-        setUserProfile(null);
-        window.location.reload();
+    const handleLogout = async () => {
+        try {
+
+            Cookies.remove("AccessToken");
+            Cookies.remove("UserProfile");
+
+
+            await LogOutUser();
+
+
+            setUserProfile(null);
+
+
+            navigate('/');
+        } catch (error) {
+            console.error("Logout error:", error);
+        }
     };
 
-    //Auth
-    const { SignUpWithGoogle } = useFirebase();
-    const navigate = useNavigate();
 
     const handleGoogleSignup = async () => {
         try {
             const SignedUser = await SignUpWithGoogle();
-            console.log("Google Signup Successful:", SignedUser);
-            Cookies.set("AccessToken", SignedUser.accessToken, { expires: 7 }); 
+            Cookies.set("AccessToken", SignedUser.accessToken, { expires: 7 });
             Cookies.set("UserProfile", JSON.stringify(SignedUser), { expires: 7 });
-            window.location.reload();
-            navigate('/'); 
+            navigate('/');
         } catch (error) {
             console.log(error.message);
         }
     };
+
+    useEffect(() => {
+        console.log("Current user state changed:", currentUser ? currentUser.uid : "No user");
+    }, [currentUser]);
+
+
     return (
         <header>
             <nav className="border-gray-200 py-2.5 bg-gray-100">
@@ -57,7 +68,7 @@ const NavBar = () => {
                     </Link>
 
                     <div className="flex items-center lg:order-2">
-                        {isLogged ? (
+                        {currentUser ? (
                             <>
                                 <img
                                     src={userProfile?.photoURL}
@@ -109,8 +120,13 @@ const NavBar = () => {
                             <li><Link to="/resource" className="block py-2 pl-3 pr-4 text-black rounded lg:hover:text-purple-700">Resources</Link></li>
                             <li><Link to="/study" className="block py-2 pl-3 pr-4 text-black rounded lg:hover:text-purple-700">Study Materials</Link></li>
                             <li><Link to="/roadmap" className="block py-2 pl-3 pr-4 text-black rounded lg:hover:text-purple-700">Roadmap</Link></li>
-
-                        </ul>
+                            {currentUser?.email === "kamal19111210@gmail.com" && (
+                                <li>
+                                    <Link to="/dashboard" className="block py-2 pl-3 pr-4 text-black rounded lg:hover:text-purple-700">
+                                        DashBoard
+                                    </Link>
+                                </li>
+                            )}                        </ul>
                     </div>
                 </div>
             </nav>

@@ -11,8 +11,28 @@ import {
     MenuItem,
     MenuItems,
 } from "@headlessui/react";
-import { XMarkIcon, ChevronDownIcon, FunnelIcon, MinusIcon, PlusIcon, MagnifyingGlassIcon } from "@heroicons/react/20/solid";
-import { BookOpenIcon, VideoCameraIcon, DocumentTextIcon, AcademicCapIcon, CalculatorIcon, BeakerIcon, GlobeAltIcon, CodeBracketIcon, BookmarkIcon } from "@heroicons/react/24/outline";
+import { 
+  XMarkIcon, 
+  ChevronDownIcon, 
+  FunnelIcon, 
+  MinusIcon, 
+  PlusIcon, 
+  MagnifyingGlassIcon 
+} from "@heroicons/react/24/solid";
+
+// For outline icons (previously 24/outline):
+import { 
+  BookOpenIcon, 
+  VideoCameraIcon, 
+  DocumentTextIcon, 
+  AcademicCapIcon, 
+  CalculatorIcon, 
+  BeakerIcon, 
+  GlobeAltIcon, 
+  CodeBracketIcon, 
+  BookmarkIcon 
+} from "@heroicons/react/24/outline";
+import { Link } from "react-router-dom";
 
 const sortOptions = [
     { name: "Most Viewed", value: "views", current: true },
@@ -198,6 +218,20 @@ export default function StudyMaterials() {
 
     return (
         <div className="min-h-screen">
+            <Link to="/AddData">
+                <button
+                    className=" inline-flex items-center gap-2 px-5 py-2 text-white bg-gradient-to-r from-indigo-500 to-purple-600 hover:from-purple-600 hover:to-indigo-500 rounded-lg shadow-md transition duration-300 ease-in-out lg: ml-36 mt-6"
+                >
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M12 4v16m8-8H4" />
+                    </svg>
+
+                    Add Resource
+                </button>
+            </Link>
+
+
+
             <main className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                 {/* Header Section */}
                 <div className="flex flex-col md:flex-row md:items-center md:justify-between border-b border-gray-200 pt-20 pb-6 gap-4">
@@ -312,6 +346,8 @@ export default function StudyMaterials() {
                         </button>
                     </div>
                 )}
+
+
 
                 {/* Main Content */}
                 <section aria-labelledby="resources-heading" className="pt-6 pb-24">

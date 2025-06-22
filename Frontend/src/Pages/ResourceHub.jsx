@@ -4,18 +4,139 @@ import { useState } from 'react';
 
 const ResourceHub = () => {
     
-    const resources = [
-        { id: 1, title: 'Data Structures Notes', course: 'MCA', semester: 1, type: 'notes', url: '#', date: '2023-05-15' },
-        { id: 2, title: 'DBMS Video Lectures', course: 'BCA', semester: 3, type: 'videos', url: '#', date: '2023-04-22' },
-        { id: 3, title: 'Operating System PDF', course: 'MCA', semester: 2, type: 'pdf', url: '#', date: '2023-06-10' },
-        { id: 4, title: 'Computer Networks Slides', course: 'BCA', semester: 4, type: 'slides', url: '#', date: '2023-03-05' },
-        { id: 5, title: 'Algorithm Book', course: 'MCA', semester: 3, type: 'book', url: '#', date: '2023-07-18' },
-        { id: 6, title: 'Web Development Tutorials', course: 'BCA', semester: 5, type: 'videos', url: '#', date: '2023-08-30' },
-        { id: 7, title: 'Software Engineering Notes', course: 'MCA', semester: 4, type: 'notes', url: '#', date: '2023-02-14' },
-        { id: 8, title: 'Python Programming Exercises', course: 'BCA', semester: 2, type: 'exercises', url: '#', date: '2023-09-01' },
-    ];
+const resources = [
+  // Semester 1 - Fundamentals (1-20)
+  { id: 1, title: 'Introduction to Computer Science', course: 'BCA', semester: 1, type: 'video', url: '#', date: '2023-01-05' },
+  { id: 2, title: 'Mathematics for Computing', course: 'MCA', semester: 1, type: 'pdf', url: '#', date: '2023-01-10' },
+  { id: 3, title: 'Programming in C Basics', course: 'BCA', semester: 1, type: 'video', url: '#', date: '2023-01-15' },
+  { id: 4, title: 'Digital Electronics Fundamentals', course: 'MCA', semester: 1, type: 'slides', url: '#', date: '2023-01-20' },
+  { id: 5, title: 'Computer Organization', course: 'BCA', semester: 1, type: 'notes', url: '#', date: '2023-01-25' },
+  { id: 6, title: 'Discrete Mathematics', course: 'MCA', semester: 1, type: 'pdf', url: '#', date: '2023-02-01' },
+  { id: 7, title: 'C Programming Exercises', course: 'BCA', semester: 1, type: 'exercises', url: '#', date: '2023-02-05' },
+  { id: 8, title: 'Office Automation Tools', course: 'MCA', semester: 1, type: 'video', url: '#', date: '2023-02-10' },
+  { id: 9, title: 'Internet Basics', course: 'BCA', semester: 1, type: 'interactive', url: '#', date: '2023-02-15' },
+  { id: 10, title: 'Problem Solving Techniques', course: 'MCA', semester: 1, type: 'notes', url: '#', date: '2023-02-20' },
 
-    
+  // Semester 2 - Core Programming (21-40)
+  { id: 21, title: 'Object Oriented Programming', course: 'BCA', semester: 2, type: 'video', url: '#', date: '2023-03-01' },
+  { id: 22, title: 'Data Structures - Arrays', course: 'MCA', semester: 2, type: 'pdf', url: '#', date: '2023-03-05' },
+  { id: 23, title: 'Java Programming Basics', course: 'BCA', semester: 2, type: 'video', url: '#', date: '2023-03-10' },
+  { id: 24, title: 'Linked Lists Tutorial', course: 'MCA', semester: 2, type: 'interactive', url: '#', date: '2023-03-15' },
+  { id: 25, title: 'Database Concepts', course: 'BCA', semester: 2, type: 'slides', url: '#', date: '2023-03-20' },
+  { id: 26, title: 'Stacks and Queues', course: 'MCA', semester: 2, type: 'animation', url: '#', date: '2023-03-25' },
+  { id: 27, title: 'SQL Fundamentals', course: 'BCA', semester: 2, type: 'exercises', url: '#', date: '2023-04-01' },
+  { id: 28, title: 'Python Programming', course: 'MCA', semester: 2, type: 'video', url: '#', date: '2023-04-05' },
+  { id: 29, title: 'Trees Data Structure', course: 'BCA', semester: 2, type: 'pdf', url: '#', date: '2023-04-10' },
+  { id: 30, title: 'Computer Graphics Basics', course: 'MCA', semester: 2, type: 'slides', url: '#', date: '2023-04-15' },
+
+  // Semester 3 - Advanced Concepts (41-60)
+  { id: 41, title: 'Operating System Concepts', course: 'BCA', semester: 3, type: 'video', url: '#', date: '2023-05-01' },
+  { id: 42, title: 'Algorithm Analysis', course: 'MCA', semester: 3, type: 'pdf', url: '#', date: '2023-05-05' },
+  { id: 43, title: 'Web Development Basics', course: 'BCA', semester: 3, type: 'interactive', url: '#', date: '2023-05-10' },
+  { id: 44, title: 'Computer Networks', course: 'MCA', semester: 3, type: 'slides', url: '#', date: '2023-05-15' },
+  { id: 45, title: 'Software Engineering', course: 'BCA', semester: 3, type: 'notes', url: '#', date: '2023-05-20' },
+  { id: 46, title: 'Machine Learning Intro', course: 'MCA', semester: 3, type: 'video', url: '#', date: '2023-06-01' },
+  { id: 47, title: 'Android Development', course: 'BCA', semester: 3, type: 'tutorial', url: '#', date: '2023-06-05' },
+  { id: 48, title: 'Cloud Computing', course: 'MCA', semester: 3, type: 'pdf', url: '#', date: '2023-06-10' },
+  { id: 49, title: 'Compiler Design', course: 'BCA', semester: 3, type: 'slides', url: '#', date: '2023-06-15' },
+  { id: 50, title: 'Data Mining Concepts', course: 'MCA', semester: 3, type: 'notes', url: '#', date: '2023-06-20' },
+
+  // Semester 4 - Specializations (61-80)
+  { id: 61, title: 'Advanced Java Programming', course: 'BCA', semester: 4, type: 'video', url: '#', date: '2023-07-01' },
+  { id: 62, title: 'Artificial Intelligence', course: 'MCA', semester: 4, type: 'pdf', url: '#', date: '2023-07-05' },
+  { id: 63, title: 'Network Security', course: 'BCA', semester: 4, type: 'slides', url: '#', date: '2023-07-10' },
+  { id: 64, title: 'Big Data Analytics', course: 'MCA', semester: 4, type: 'video', url: '#', date: '2023-07-15' },
+  { id: 65, title: 'IoT Fundamentals', course: 'BCA', semester: 4, type: 'interactive', url: '#', date: '2023-07-20' },
+  { id: 66, title: 'Blockchain Technology', course: 'MCA', semester: 4, type: 'pdf', url: '#', date: '2023-08-01' },
+  { id: 67, title: 'Advanced DBMS', course: 'BCA', semester: 4, type: 'video', url: '#', date: '2023-08-05' },
+  { id: 68, title: 'Natural Language Processing', course: 'MCA', semester: 4, type: 'slides', url: '#', date: '2023-08-10' },
+  { id: 69, title: 'Computer Vision Basics', course: 'BCA', semester: 4, type: 'notes', url: '#', date: '2023-08-15' },
+  { id: 70, title: 'Quantum Computing Intro', course: 'MCA', semester: 4, type: 'pdf', url: '#', date: '2023-08-20' },
+
+  // Semester 5 - Professional Skills (81-100)
+  { id: 81, title: 'Project Management', course: 'BCA', semester: 5, type: 'video', url: '#', date: '2023-09-01' },
+  { id: 82, title: 'Research Methodology', course: 'MCA', semester: 5, type: 'pdf', url: '#', date: '2023-09-05' },
+  { id: 83, title: 'Technical Writing', course: 'BCA', semester: 5, type: 'slides', url: '#', date: '2023-09-10' },
+  { id: 84, title: 'Entrepreneurship', course: 'MCA', semester: 5, type: 'video', url: '#', date: '2023-09-15' },
+  { id: 85, title: 'IT Service Management', course: 'BCA', semester: 5, type: 'notes', url: '#', date: '2023-09-20' },
+  { id: 86, title: 'Cloud Architecture', course: 'MCA', semester: 5, type: 'pdf', url: '#', date: '2023-10-01' },
+  { id: 87, title: 'UX Design Principles', course: 'BCA', semester: 5, type: 'video', url: '#', date: '2023-10-05' },
+  { id: 88, title: 'Data Visualization', course: 'MCA', semester: 5, type: 'interactive', url: '#', date: '2023-10-10' },
+  { id: 89, title: 'IT Ethics and Laws', course: 'BCA', semester: 5, type: 'slides', url: '#', date: '2023-10-15' },
+  { id: 90, title: 'Agile Methodologies', course: 'MCA', semester: 5, type: 'video', url: '#', date: '2023-10-20' },
+
+  // Semester 6 - Capstone (101-120)
+  { id: 101, title: 'Final Project Guidelines', course: 'BCA', semester: 6, type: 'pdf', url: '#', date: '2023-11-01' },
+  { id: 102, title: 'Thesis Writing', course: 'MCA', semester: 6, type: 'video', url: '#', date: '2023-11-05' },
+  { id: 103, title: 'Case Studies', course: 'BCA', semester: 6, type: 'slides', url: '#', date: '2023-11-10' },
+  { id: 104, title: 'Emerging Technologies', course: 'MCA', semester: 6, type: 'notes', url: '#', date: '2023-11-15' },
+  { id: 105, title: 'Industry Trends', course: 'BCA', semester: 6, type: 'video', url: '#', date: '2023-11-20' },
+  { id: 106, title: 'Interview Preparation', course: 'MCA', semester: 6, type: 'pdf', url: '#', date: '2023-12-01' },
+  { id: 107, title: 'Portfolio Development', course: 'BCA', semester: 6, type: 'interactive', url: '#', date: '2023-12-05' },
+  { id: 108, title: 'Research Papers', course: 'MCA', semester: 6, type: 'slides', url: '#', date: '2023-12-10' },
+  { id: 109, title: 'Open Source Contribution', course: 'BCA', semester: 6, type: 'video', url: '#', date: '2023-12-15' },
+  { id: 110, title: 'Capstone Project Samples', course: 'MCA', semester: 6, type: 'pdf', url: '#', date: '2023-12-20' },
+
+  // Additional Resources (121-200)
+  { id: 121, title: 'Git Version Control', course: 'BCA', semester: 3, type: 'video', url: '#', date: '2024-01-01' },
+  { id: 122, title: 'Docker Fundamentals', course: 'MCA', semester: 4, type: 'interactive', url: '#', date: '2024-01-05' },
+  { id: 123, title: 'Kubernetes Guide', course: 'BCA', semester: 5, type: 'pdf', url: '#', date: '2024-01-10' },
+  { id: 124, title: 'AWS Certification Prep', course: 'MCA', semester: 5, type: 'video', url: '#', date: '2024-01-15' },
+  { id: 125, title: 'Azure Cloud Services', course: 'BCA', semester: 6, type: 'slides', url: '#', date: '2024-01-20' },
+  { id: 126, title: 'Google Cloud Platform', course: 'MCA', semester: 6, type: 'notes', url: '#', date: '2024-02-01' },
+  { id: 127, title: 'DevOps Practices', course: 'BCA', semester: 5, type: 'video', url: '#', date: '2024-02-05' },
+  { id: 128, title: 'CI/CD Pipelines', course: 'MCA', semester: 5, type: 'pdf', url: '#', date: '2024-02-10' },
+  { id: 129, title: 'Microservices Architecture', course: 'BCA', semester: 6, type: 'slides', url: '#', date: '2024-02-15' },
+  { id: 130, title: 'Serverless Computing', course: 'MCA', semester: 6, type: 'video', url: '#', date: '2024-02-20' },
+
+  // Programming Languages (131-150)
+  { id: 131, title: 'C++ Advanced Concepts', course: 'BCA', semester: 3, type: 'pdf', url: '#', date: '2024-03-01' },
+  { id: 132, title: 'Python Data Science', course: 'MCA', semester: 4, type: 'video', url: '#', date: '2024-03-05' },
+  { id: 133, title: 'JavaScript Frameworks', course: 'BCA', semester: 4, type: 'interactive', url: '#', date: '2024-03-10' },
+  { id: 134, title: 'TypeScript Handbook', course: 'MCA', semester: 5, type: 'pdf', url: '#', date: '2024-03-15' },
+  { id: 135, title: 'R for Statistics', course: 'BCA', semester: 5, type: 'video', url: '#', date: '2024-03-20' },
+  { id: 136, title: 'Go Programming', course: 'MCA', semester: 6, type: 'slides', url: '#', date: '2024-04-01' },
+  { id: 137, title: 'Rust Language Basics', course: 'BCA', semester: 6, type: 'notes', url: '#', date: '2024-04-05' },
+  { id: 138, title: 'Kotlin for Android', course: 'MCA', semester: 5, type: 'video', url: '#', date: '2024-04-10' },
+  { id: 139, title: 'Swift Programming', course: 'BCA', semester: 6, type: 'pdf', url: '#', date: '2024-04-15' },
+  { id: 140, title: 'Dart with Flutter', course: 'MCA', semester: 6, type: 'interactive', url: '#', date: '2024-04-20' },
+
+  // Web Technologies (151-170)
+  { id: 151, title: 'HTML5 Complete Reference', course: 'BCA', semester: 2, type: 'pdf', url: '#', date: '2024-05-01' },
+  { id: 152, title: 'CSS3 Animations', course: 'MCA', semester: 3, type: 'video', url: '#', date: '2024-05-05' },
+  { id: 153, title: 'Bootstrap Framework', course: 'BCA', semester: 3, type: 'slides', url: '#', date: '2024-05-10' },
+  { id: 154, title: 'React.js Deep Dive', course: 'MCA', semester: 4, type: 'video', url: '#', date: '2024-05-15' },
+  { id: 155, title: 'Angular Framework', course: 'BCA', semester: 4, type: 'pdf', url: '#', date: '2024-05-20' },
+  { id: 156, title: 'Vue.js Tutorial', course: 'MCA', semester: 5, type: 'interactive', url: '#', date: '2024-06-01' },
+  { id: 157, title: 'Node.js Backend', course: 'BCA', semester: 5, type: 'video', url: '#', date: '2024-06-05' },
+  { id: 158, title: 'Express Framework', course: 'MCA', semester: 5, type: 'slides', url: '#', date: '2024-06-10' },
+  { id: 159, title: 'MongoDB with Mongoose', course: 'BCA', semester: 6, type: 'notes', url: '#', date: '2024-06-15' },
+  { id: 160, title: 'GraphQL API Design', course: 'MCA', semester: 6, type: 'video', url: '#', date: '2024-06-20' },
+
+  // Mobile Development (171-190)
+  { id: 171, title: 'Android Studio Guide', course: 'BCA', semester: 5, type: 'pdf', url: '#', date: '2024-07-01' },
+  { id: 172, title: 'iOS Development', course: 'MCA', semester: 6, type: 'video', url: '#', date: '2024-07-05' },
+  { id: 173, title: 'React Native Crash Course', course: 'BCA', semester: 6, type: 'interactive', url: '#', date: '2024-07-10' },
+  { id: 174, title: 'Flutter Widgets', course: 'MCA', semester: 5, type: 'slides', url: '#', date: '2024-07-15' },
+  { id: 175, title: 'Mobile UI/UX', course: 'BCA', semester: 6, type: 'notes', url: '#', date: '2024-07-20' },
+  { id: 176, title: 'Firebase for Mobile', course: 'MCA', semester: 6, type: 'video', url: '#', date: '2024-08-01' },
+  { id: 177, title: 'Mobile Security', course: 'BCA', semester: 5, type: 'pdf', url: '#', date: '2024-08-05' },
+  { id: 178, title: 'Cross-Platform Apps', course: 'MCA', semester: 6, type: 'slides', url: '#', date: '2024-08-10' },
+  { id: 179, title: 'Mobile Testing', course: 'BCA', semester: 6, type: 'video', url: '#', date: '2024-08-15' },
+  { id: 180, title: 'App Store Optimization', course: 'MCA', semester: 6, type: 'notes', url: '#', date: '2024-08-20' },
+
+  // Final Set (191-200)
+  { id: 191, title: 'Ethical Hacking Basics', course: 'BCA', semester: 6, type: 'video', url: '#', date: '2024-09-01' },
+  { id: 192, title: 'Penetration Testing', course: 'MCA', semester: 6, type: 'pdf', url: '#', date: '2024-09-05' },
+  { id: 193, title: 'Cyber Laws', course: 'BCA', semester: 6, type: 'slides', url: '#', date: '2024-09-10' },
+  { id: 194, title: 'Digital Forensics', course: 'MCA', semester: 6, type: 'video', url: '#', date: '2024-09-15' },
+  { id: 195, title: 'Bug Bounty Guide', course: 'BCA', semester: 6, type: 'interactive', url: '#', date: '2024-09-20' },
+  { id: 196, title: 'Secure Coding Practices', course: 'MCA', semester: 6, type: 'pdf', url: '#', date: '2024-10-01' },
+  { id: 197, title: 'Cryptography Algorithms', course: 'BCA', semester: 6, type: 'slides', url: '#', date: '2024-10-05' },
+  { id: 198, title: 'Network Defense', course: 'MCA', semester: 6, type: 'video', url: '#', date: '2024-10-10' },
+  { id: 199, title: 'Security Certifications', course: 'BCA', semester: 6, type: 'notes', url: '#', date: '2024-10-15' },
+  { id: 200, title: 'Final Project Submission', course: 'MCA', semester: 6, type: 'pdf', url: '#', date: '2024-10-20' }
+];
     const [filters, setFilters] = useState({
         course: 'all',
         semester: 'all',
