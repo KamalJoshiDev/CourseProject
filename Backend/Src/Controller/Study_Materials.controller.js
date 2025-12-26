@@ -1,9 +1,8 @@
 const StudyModel = require("../Models/Study Materials.Model");
-const PendingResource = require("../Models/PendingResource.Model");
+const PendingModel = require("../Models/PendingResource.Model");
 const AsyncHandler = require("../Utils/AsyncHandler");
 const ApiError = require("../Utils/ApiError");
 
-// Add resource to pending list
 const Add_Resource = AsyncHandler(async (req, res) => {
     const { name, description, category, type, link, submittedBy } = req.body;
 
@@ -15,7 +14,7 @@ const Add_Resource = AsyncHandler(async (req, res) => {
     }
 
     try {
-        const newResource = await PendingResource.create({
+        const newResource = await PendingModel.create({
             name,
             description,
             category,
@@ -38,18 +37,31 @@ const Add_Resource = AsyncHandler(async (req, res) => {
     }
 });
 
-// Fetch approved study materials
-const Fetch_Data = AsyncHandler(async (req, res) => {
-    try {
-        const FindAllData = await StudyModel.find(); // You can filter by status if needed
+const Fetch_Pending_Resource = AsyncHandler(async (req, res) => {
+   try {
+        const FindAllData = await PendingModel.find();
         return res.status(200).json({
             success: true,
             message: "Resources found",
             data: FindAllData
-        });
+        })
+    } catch (error) {
+        throw new ApiError("Invalid DB Credentials!", 404);
+    }
+      
+});
+
+const Fetch_Data = AsyncHandler(async (req, res) => {
+    try {
+        const FindAllData = await StudyModel.find();
+        return res.status(200).json({
+            success: true,
+            message: "Resources found",
+            data: FindAllData
+        })
     } catch (error) {
         throw new ApiError("Invalid DB Credentials!", 404);
     }
 });
 
-module.exports = { Fetch_Data, Add_Resource };
+module.exports = { Fetch_Data, Add_Resource ,Fetch_Pending_Resource };

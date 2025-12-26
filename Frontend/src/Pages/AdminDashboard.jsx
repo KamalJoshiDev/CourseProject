@@ -1,16 +1,16 @@
 import React from 'react';
-import { useState } from 'react';
+import { useState ,useEffect } from 'react';
 import {
   ChartBarIcon,
   UserGroupIcon,
   DocumentCheckIcon,
   DocumentPlusIcon,
-  Cog6ToothIcon,         
+  Cog6ToothIcon,
   ArrowLeftOnRectangleIcon, // Previously "LogoutIcon"
   XMarkIcon,             // Previously "XIcon"
   CheckIcon,
   ArrowLeftCircleIcon
-} from '@heroicons/react/24/outline'; 
+} from '@heroicons/react/24/outline';
 
 const AdminDashboard = () => {
   const [activeTab, setActiveTab] = useState('users');
@@ -21,53 +21,53 @@ const AdminDashboard = () => {
       {/* Sidebar */}
       <div className={`${sidebarOpen ? 'w-64' : 'w-20'} bg-gray-800 text-white transition-all duration-300`}>
         <div className="p-4 flex items-center justify-between">
-     
-          <button 
+
+          <button
             onClick={() => setSidebarOpen(!sidebarOpen)}
             className="p-1 rounded-md hover:bg-indigo-700"
           >
             {sidebarOpen ? '◀' : '▶'}
           </button>
         </div>
-        
+
         <nav className="mt-8">
-          <NavItem 
-            icon={<UserGroupIcon className="h-6 w-6" />} 
-            text="Users" 
-            active={activeTab === 'users'} 
+          <NavItem
+            icon={<UserGroupIcon className="h-6 w-6" />}
+            text="Users"
+            active={activeTab === 'users'}
             onClick={() => setActiveTab('users')}
             sidebarOpen={sidebarOpen}
           />
-          <NavItem 
-            icon={<DocumentCheckIcon className="h-6 w-6" />} 
-            text="User Data" 
-            active={activeTab === 'userData'} 
+          <NavItem
+            icon={<DocumentCheckIcon className="h-6 w-6" />}
+            text="User Data"
+            active={activeTab === 'userData'}
             onClick={() => setActiveTab('userData')}
             sidebarOpen={sidebarOpen}
           />
-          <NavItem 
-            icon={<DocumentPlusIcon className="h-6 w-6" />} 
-            text="Add Data" 
-            active={activeTab === 'addData'} 
+          <NavItem
+            icon={<DocumentPlusIcon className="h-6 w-6" />}
+            text="Add Data"
+            active={activeTab === 'addData'}
             onClick={() => setActiveTab('addData')}
             sidebarOpen={sidebarOpen}
           />
-          <NavItem 
-            icon={<ChartBarIcon className="h-6 w-6" />} 
-            text="Analytics" 
-            active={activeTab === 'analytics'} 
+          <NavItem
+            icon={<ChartBarIcon className="h-6 w-6" />}
+            text="Analytics"
+            active={activeTab === 'analytics'}
             onClick={() => setActiveTab('analytics')}
             sidebarOpen={sidebarOpen}
           />
-          <NavItem 
-            icon={<Cog6ToothIcon className="h-6 w-6" />} 
-            text="Settings" 
-            active={activeTab === 'settings'} 
+          <NavItem
+            icon={<Cog6ToothIcon className="h-6 w-6" />}
+            text="Settings"
+            active={activeTab === 'settings'}
             onClick={() => setActiveTab('settings')}
             sidebarOpen={sidebarOpen}
           />
         </nav>
-        
+
         <div className="absolute bottom-0 w-full p-4">
           <button className="flex items-center space-x-2 text-red-300 hover:text-white">
             <ArrowLeftOnRectangleIcon className="h-6 w-6" />
@@ -89,9 +89,9 @@ const AdminDashboard = () => {
           </h2>
           <div className="flex items-center space-x-4">
             <div className="relative">
-              <input 
-                type="text" 
-                placeholder="Search..." 
+              <input
+                type="text"
+                placeholder="Search..."
                 className="pl-10 pr-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500"
               />
               <svg className="absolute left-3 top-2.5 h-5 w-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -131,19 +131,18 @@ const NavItem = ({ icon, text, active, onClick, sidebarOpen }) => {
   );
 };
 
-// Tab Components
+
 const UsersTab = () => {
   const [users, setUsers] = useState([
-    { id: 1, name: 'John Doe', email: 'john@example.com', role: 'user', status: 'active', joined: '2023-01-15' },
-    { id: 2, name: 'Jane Smith', email: 'jane@example.com', role: 'editor', status: 'active', joined: '2023-02-20' },
-    { id: 3, name: 'Bob Johnson', email: 'bob@example.com', role: 'user', status: 'inactive', joined: '2023-03-10' },
-    { id: 4, name: 'Alice Brown', email: 'alice@example.com', role: 'admin', status: 'active', joined: '2023-01-05' },
+    { id: 1, name: 'Kamal Joshi', email: 'kamal19111210.com', role: 'admin', status: 'active', joined: '2023-01-15' },
+    { id: 2, name: 'Neeraj Joshi', email: 'coc17113480.com', role: 'editor', status: 'active', joined: '2023-02-20' },
+
   ]);
 
   const toggleStatus = (id) => {
-    setUsers(users.map(user => 
-      user.id === id 
-        ? { ...user, status: user.status === 'active' ? 'inactive' : 'active' } 
+    setUsers(users.map(user =>
+      user.id === id
+        ? { ...user, status: user.status === 'active' ? 'inactive' : 'active' }
         : user
     ));
   };
@@ -184,7 +183,7 @@ const UsersTab = () => {
                 <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{user.email}</td>
                 <td className="px-6 py-4 whitespace-nowrap">
                   <span className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full 
-                    ${user.role === 'admin' ? 'bg-purple-100 text-purple-800' : 
+                    ${user.role === 'admin' ? 'bg-purple-100 text-purple-800' :
                       user.role === 'editor' ? 'bg-blue-100 text-blue-800' : 'bg-green-100 text-green-800'}`}>
                     {user.role}
                   </span>
@@ -197,13 +196,12 @@ const UsersTab = () => {
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{user.joined}</td>
                 <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                  <button 
+                  <button
                     onClick={() => toggleStatus(user.id)}
                     className={`mr-2 ${user.status === 'active' ? 'text-red-600 hover:text-red-900' : 'text-green-600 hover:text-green-900'}`}
                   >
                     {user.status === 'active' ? 'Deactivate' : 'Activate'}
                   </button>
-                  <button className="text-indigo-600 hover:text-indigo-900">Edit</button>
                 </td>
               </tr>
             ))}
@@ -228,80 +226,253 @@ const UsersTab = () => {
 };
 
 const UserDataTab = () => {
-  const [userData, setUserData] = useState([
-    { id: 1, title: 'Market Analysis Q1', submittedBy: 'John Doe', date: '2023-04-15', status: 'pending', content: 'Detailed analysis of market trends for Q1 2023...' },
-    { id: 2, title: 'Product Feedback', submittedBy: 'Jane Smith', date: '2023-04-10', status: 'approved', content: 'User feedback collected for our new product...' },
-    { id: 3, title: 'Competitor Report', submittedBy: 'Bob Johnson', date: '2023-04-05', status: 'rejected', content: 'Analysis of our main competitors...' },
-    { id: 4, title: 'Customer Survey Results', submittedBy: 'Alice Brown', date: '2023-03-28', status: 'approved', content: 'Results from our annual customer survey...' },
-  ]);
+  const [resources, setResources] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [filter, setFilter] = useState('all'); // 'all', 'pending', 'approved', 'rejected'
 
-  const updateStatus = (id, newStatus) => {
-    setUserData(userData.map(item => 
-      item.id === id ? { ...item, status: newStatus } : item
-    ));
+  useEffect(() => {
+    const fetchResources = async () => {
+      try {
+        const response = await fetch("http://localhost:6800/api/v1/getPending");
+        
+        if (!response.ok) {
+          throw new Error(`Server responded with ${response.status}`);
+        }
+        
+        const result = await response.json();
+        
+        if (!result.success || !Array.isArray(result.data)) {
+          throw new Error(result.message || 'Invalid data format received');
+        }
+        
+        setResources(result.data);
+        
+      } catch (error) {
+        console.error("Fetch error:", error);
+        setError(error.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchResources();
+  }, []);
+
+  const updateResourceStatus = async (id, newStatus) => {
+    try {
+      // Optimistic update
+      setResources(prev => 
+        prev.map(resource => 
+          resource._id === id ? { ...resource, status: newStatus } : resource
+        )
+      );
+
+      const response = await fetch(`http://localhost:6800/api/v1/updateStatus/${id}`, {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ status: newStatus }),
+      });
+
+      const result = await response.json();
+
+      if (!response.ok || !result.success) {
+        throw new Error(result.message || 'Update failed');
+      }
+
+    } catch (error) {
+      console.error("Update error:", error);
+      // Revert on error
+      setResources(prev => 
+        prev.map(resource => 
+          resource._id === id ? { ...resource, status: resource.status } : resource
+        )
+      );
+      alert(`Update failed: ${error.message}`);
+    }
   };
 
+  const formatDate = (dateString) => {
+    if (!dateString) return 'N/A';
+    try {
+      return new Date(dateString).toLocaleDateString('en-US', {
+        year: 'numeric',
+        month: 'short',
+        day: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit'
+      });
+    } catch {
+      return dateString;
+    }
+  };
+
+  const filteredResources = resources.filter(resource => {
+    if (filter === 'all') return true;
+    return resource.status === filter;
+  });
+
+  if (loading) {
+    return (
+      <div className="flex justify-center items-center h-64">
+        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div>
+        <span className="ml-3">Loading resources...</span>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="p-4 bg-red-50 text-red-600 rounded-md max-w-2xl mx-auto">
+        <h3 className="font-bold">Error Loading Resources</h3>
+        <p className="mt-1">{error}</p>
+        <button 
+          onClick={() => window.location.reload()}
+          className="mt-3 px-4 py-2 bg-red-100 hover:bg-red-200 rounded-md text-sm font-medium"
+        >
+          Refresh Page
+        </button>
+      </div>
+    );
+  }
+
   return (
-    <div>
-      <div className="bg-white rounded-lg shadow overflow-hidden mb-6">
-        <div className="p-4 border-b">
-          <h3 className="font-semibold text-lg">User Submitted Data</h3>
+    <div className="container mx-auto px-4 py-8">
+      <div className="bg-white rounded-lg shadow overflow-hidden">
+        <div className="p-4 border-b bg-gray-50 flex justify-between items-center">
+          <div>
+            <h2 className="text-xl font-semibold text-gray-800">Resource Submissions</h2>
+            <p className="text-sm text-gray-500 mt-1">
+              Showing {filteredResources.length} {filteredResources.length === 1 ? 'item' : 'items'}
+            </p>
+          </div>
+          
+          <div className="flex space-x-2">
+            <button
+              onClick={() => setFilter('all')}
+              className={`px-3 py-1 text-xs rounded-md ${filter === 'all' ? 'bg-blue-100 text-blue-800' : 'bg-gray-100 text-gray-800'}`}
+            >
+              All
+            </button>
+            <button
+              onClick={() => setFilter('pending')}
+              className={`px-3 py-1 text-xs rounded-md ${filter === 'pending' ? 'bg-yellow-100 text-yellow-800' : 'bg-gray-100 text-gray-800'}`}
+            >
+              Pending
+            </button>
+            <button
+              onClick={() => setFilter('approved')}
+              className={`px-3 py-1 text-xs rounded-md ${filter === 'approved' ? 'bg-green-100 text-green-800' : 'bg-gray-100 text-gray-800'}`}
+            >
+              Approved
+            </button>
+            <button
+              onClick={() => setFilter('rejected')}
+              className={`px-3 py-1 text-xs rounded-md ${filter === 'rejected' ? 'bg-red-100 text-red-800' : 'bg-gray-100 text-gray-800'}`}
+            >
+              Rejected
+            </button>
+          </div>
         </div>
-        <div className="overflow-x-auto">
-          <table className="min-w-full divide-y divide-gray-200">
-            <thead className="bg-gray-50">
-              <tr>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Title</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Submitted By</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Date</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
-              </tr>
-            </thead>
-            <tbody className="bg-white divide-y divide-gray-200">
-              {userData.map((data) => (
-                <tr key={data.id}>
-                  <td className="px-6 py-4 whitespace-nowrap">
-                    <div className="text-sm font-medium text-gray-900">{data.title}</div>
-                    <div className="text-sm text-gray-500 truncate max-w-xs">{data.content}</div>
-                  </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{data.submittedBy}</td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{data.date}</td>
-                  <td className="px-6 py-4 whitespace-nowrap">
-                    <span className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full 
-                      ${data.status === 'approved' ? 'bg-green-100 text-green-800' : 
-                        data.status === 'rejected' ? 'bg-red-100 text-red-800' : 'bg-yellow-100 text-yellow-800'}`}>
-                      {data.status}
-                    </span>
-                  </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm font-medium space-x-2">
-                    {data.status !== 'approved' && (
-                      <button 
-                        onClick={() => updateStatus(data.id, 'approved')}
-                        className="text-green-600 hover:text-green-900 flex items-center"
-                      >
-                        <CheckIcon className="h-4 w-4 mr-1" /> Approve
-                      </button>
-                    )}
-                    {data.status !== 'rejected' && (
-                      <button 
-                        onClick={() => updateStatus(data.id, 'rejected')}
-                        className="text-red-600 hover:text-red-900 flex items-center"
-                      >
-                        <XMarkIcon className="h-4 w-4 mr-1" /> Reject
-                      </button>
-                    )}
-                    <button className="text-indigo-600 hover:text-indigo-900">View</button>
-                  </td>
+        
+        {filteredResources.length === 0 ? (
+          <div className="p-8 text-center text-gray-500">
+            <p>No resources found matching your criteria</p>
+          </div>
+        ) : (
+          <div className="overflow-x-auto">
+            <table className="min-w-full divide-y divide-gray-200">
+              <thead className="bg-gray-50">
+                <tr>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Name</th>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Description</th>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Category</th>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Type</th>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Link</th>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Submitted By</th>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Date</th>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+              </thead>
+              <tbody className="bg-white divide-y divide-gray-200">
+                {filteredResources.map((resource) => (
+                  <tr key={resource._id} className="hover:bg-gray-50">
+                    <td className="px-6 py-4 whitespace-nowrap">
+                      <div className="text-sm font-medium text-gray-900">
+                        {resource.name || 'Unnamed Resource'}
+                      </div>
+                    </td>
+                    <td className="px-6 py-4">
+                      <div className="text-sm text-gray-500 max-w-xs truncate">
+                        {resource.description || 'No description provided'}
+                      </div>
+                    </td>
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                      {resource.category || 'Uncategorized'}
+                    </td>
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                      {resource.type || 'N/A'}
+                    </td>
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-blue-500">
+                      {resource.link ? (
+                        <a 
+                          href={resource.link} 
+                          target="_blank" 
+                          rel="noopener noreferrer"
+                          className="hover:underline"
+                        >
+                          View Resource
+                        </a>
+                      ) : 'N/A'}
+                    </td>
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                      {resource.submittedBy || 'Unknown'}
+                    </td>
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                      {formatDate(resource.submittedAt)}
+                    </td>
+                    <td className="px-6 py-4 whitespace-nowrap">
+                      <span className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full 
+                        ${resource.status === 'approved' ? 'bg-green-100 text-green-800' :
+                          resource.status === 'rejected' ? 'bg-red-100 text-red-800' : 
+                          'bg-yellow-100 text-yellow-800'}`}>
+                        {resource.status || 'pending'}
+                      </span>
+                    </td>
+                    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium space-x-2">
+                      {resource.status !== 'approved' && (
+                        <button
+                          onClick={() => updateResourceStatus(resource._id, 'approved')}
+                          className="text-green-600 hover:text-green-900 flex items-center"
+                          title="Approve this resource"
+                        >
+                          <CheckIcon className="h-4 w-4 mr-1" /> Approve
+                        </button>
+                      )}
+                      {resource.status !== 'rejected' && (
+                        <button
+                          onClick={() => updateResourceStatus(resource._id, 'rejected')}
+                          className="text-red-600 hover:text-red-900 flex items-center"
+                          title="Reject this resource"
+                        >
+                          <XMarkIcon className="h-4 w-4 mr-1" /> Reject
+                        </button>
+                      )}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        )}
       </div>
     </div>
   );
 };
+
 
 const AddDataTab = () => {
   const [formData, setFormData] = useState({
@@ -321,7 +492,7 @@ const AddDataTab = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Handle form submission
+  
     console.log('Form submitted:', formData);
     alert('Data submitted successfully!');
     setFormData({
@@ -348,7 +519,7 @@ const AddDataTab = () => {
             required
           />
         </div>
-        
+
         <div className="mb-4">
           <label htmlFor="category" className="block text-sm font-medium text-gray-700 mb-1">Category</label>
           <select
@@ -366,7 +537,7 @@ const AddDataTab = () => {
             <option value="other">Other</option>
           </select>
         </div>
-        
+
         <div className="mb-4">
           <label htmlFor="content" className="block text-sm font-medium text-gray-700 mb-1">Content</label>
           <textarea
@@ -379,7 +550,7 @@ const AddDataTab = () => {
             required
           ></textarea>
         </div>
-        
+
         <div className="mb-6 flex items-center">
           <input
             type="checkbox"
@@ -391,7 +562,7 @@ const AddDataTab = () => {
           />
           <label htmlFor="isPublic" className="ml-2 block text-sm text-gray-700">Make this data public</label>
         </div>
-        
+
         <div className="flex justify-end">
           <button
             type="button"
@@ -437,14 +608,14 @@ const AnalyticsTab = () => {
           <p className="text-sm text-green-600 mt-1">↑ 3% from last month</p>
         </div>
       </div>
-      
+
       <div className="bg-white p-6 rounded-lg border border-gray-200 mb-8">
         <h4 className="text-md font-medium text-gray-900 mb-4">Monthly Data Submissions</h4>
         <div className="h-64 bg-gray-50 rounded-md flex items-center justify-center">
           <p className="text-gray-500">Chart would be displayed here</p>
         </div>
       </div>
-      
+
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         <div className="bg-white p-6 rounded-lg border border-gray-200">
           <h4 className="text-md font-medium text-gray-900 mb-4">Data by Category</h4>
@@ -496,7 +667,7 @@ const SettingsTab = () => {
             </div>
           </div>
         </div>
-        
+
         <div>
           <h4 className="text-md font-medium text-gray-900 mb-4">Data Approval Settings</h4>
           <div className="space-y-4">
@@ -528,7 +699,7 @@ const SettingsTab = () => {
             </div>
           </div>
         </div>
-        
+
         <div className="pt-4 border-t border-gray-200">
           <button className="px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
             Save Settings
